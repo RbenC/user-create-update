@@ -1,5 +1,5 @@
 export const initialStateUser = {
-	isLoading: 'iddle',
+	isLoading: 'iddle', // paso 1
 	data: [],
 	errorMessage: null,
 	message: null

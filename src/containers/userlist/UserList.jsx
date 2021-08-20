@@ -4,15 +4,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { fetchUsersStartThunk } from "../../store/users/thunks"
 
+
 const UserList = () => {
-    const users = useSelector(state => state.users.data)
-    console.log(users);
-    // debugger
+    const {data: users, isLoading} = useSelector(state => state.users)
+    
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch(fetchUsersStartThunk())
-    },[])
+        if(isLoading ==='iddle') 
+             dispatch(fetchUsersStartThunk())
+    },[isLoading, dispatch])
 
     return (
         <div>      
