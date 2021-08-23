@@ -3,6 +3,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from "react"
 import { deleteUsersStartThunk } from '../../store/users/thunks'
+import Swal from 'sweetalert2'; 
 
 const UserDelete = () => {
     const { id } =  useParams()
@@ -16,8 +17,20 @@ const UserDelete = () => {
     })
     
     const handlerOnDelete = () => {
-        dispatch(deleteUsersStartThunk(parseInt(id) ))
-        history.push('/')
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteUsersStartThunk(parseInt(id) ))
+                history.push('/')
+            }
+          })
     }
     
     const getUser = () => {
@@ -34,7 +47,7 @@ const UserDelete = () => {
 
             {/* <button onClick={handlerOnDelete}>Confirmar</button> */}
             <button onClick={handlerOnDelete} className="btn btn-outline-info mx-4">💾 Confirm</button>
-            <button className="btn btn-outline-success"> <NavLink to='/'>Volver </NavLink>  </button>
+            <button className="btn btn-outline-success"> <NavLink to='/'>Back </NavLink>  </button>
             
         </>
     )

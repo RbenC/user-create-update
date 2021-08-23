@@ -11,14 +11,6 @@ function App() {
 		<div className="App" >
 			<Router>
 				<NavBar/>
-
-				{/* <NavLink to='/' className="mx-2">
-					Home  
-				</NavLink>
-				<NavLink to='/user/create'>
-					 Create
-				</NavLink> */}
-
 				<Switch>
 					<Route path='/' exact>
 						<UserList/>

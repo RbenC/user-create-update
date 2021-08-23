@@ -24,7 +24,7 @@ const navbar = () => {
 							<NavLink className="nav-link" to="/" exact>
 								Home
 							</NavLink>
-						</li>
+						</li>						
 						<li className="nav-item">
 							<NavLink className="nav-link" to="/user/create">
 								Create

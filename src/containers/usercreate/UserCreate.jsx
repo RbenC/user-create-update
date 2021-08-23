@@ -4,6 +4,7 @@ import { NavLink, useHistory} from "react-router-dom"
 import { useDispatch } from 'react-redux'
 
 import { createUsersStartThunk } from '../../store/users/thunks'
+import Swal from 'sweetalert2'; 
 
 const UserCreate = () => {
     const [ name, setName ] = useInput('')    
@@ -12,14 +13,17 @@ const UserCreate = () => {
     const history = useHistory(); 
 
     const handlerOnSave = (e) => {
-        e.preventDefault()
-        if(name){
+        e.preventDefault()        
+        if(!name || name.length>10){
+            Swal.fire("Escriba nombre de usuario no mayor a 10 caracteres")
+        } else {
             dispatch(createUsersStartThunk({
                 id: new Date().getTime(),
                 name:name 
             }))
-            history.push('/')
+            history.push('/')                    
         }
+
         
     }
 
@@ -40,7 +44,7 @@ const UserCreate = () => {
 
                 
                 <button type="submit" className="btn btn-outline-info mx-4">💾 Save</button>
-                <button className="btn btn-outline-success"> <NavLink to='/'>Volver </NavLink>  </button>
+                <button className="btn btn-outline-success"> <NavLink to='/'>Back </NavLink>  </button>
                 </form>      
             </div>
         </>
