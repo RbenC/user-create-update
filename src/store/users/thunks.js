@@ -71,7 +71,7 @@ export const createUsersStartThunk = (user) => {
 
 //update
 export const updateUsersStartThunk = (user) => {
-	debugger
+	// debugger
 	return async (dispatch) => {
 		// const { users } = getState()
 		// if (users.data.length > 10) {

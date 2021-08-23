@@ -1,6 +1,6 @@
 import styles from  './usercreate.module.css'
 import useInput from '../../hooks/useInput'; 
-import { useHistory} from "react-router-dom"
+import { NavLink, useHistory} from "react-router-dom"
 import { useDispatch } from 'react-redux'
 
 import { createUsersStartThunk } from '../../store/users/thunks'
@@ -13,11 +13,13 @@ const UserCreate = () => {
 
     const handlerOnSave = (e) => {
         e.preventDefault()
-        dispatch(createUsersStartThunk({
-            id: new Date().getTime(),
-            name:name 
-        }))
-        history.push('/')
+        if(name){
+            dispatch(createUsersStartThunk({
+                id: new Date().getTime(),
+                name:name 
+            }))
+            history.push('/')
+        }
         
     }
 
@@ -35,8 +37,10 @@ const UserCreate = () => {
                         onChange={setName}
                     />
                 </div>
+
                 
-                <button type="submit">💾 Save</button>
+                <button type="submit" className="btn btn-outline-info mx-4">💾 Save</button>
+                <button className="btn btn-outline-success"> <NavLink to='/'>Volver </NavLink>  </button>
                 </form>      
             </div>
         </>
